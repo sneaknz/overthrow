@@ -1,0 +1,138 @@
+.overthrow-shield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/gif;base64,R0lGODlhAQABAHAAACH5BAUHAAAALAAAAAABAAEAAAICRAEAOw==') 0 0 repeat;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  position: relative;
+  height: 100%;
+}
+html {
+  position: relative;
+}
+html.lte8 {
+  position: inherit;
+}
+html.lock-scroll {
+  height: 100%;
+}
+.overthrow {
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  bottom: 0;
+  -webkit-transition: opacity 0.1s;
+  -moz-transition: opacity 0.1s;
+  -ms-transition: opacity 0.1s;
+  -o-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+  display: none;
+}
+.csstransforms .overthrow .overthrow-content {
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+.overthrow-enable .overthrow {
+  position: fixed;
+  display: block;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+}
+.lte8 .overthrow-enable .overthrow {
+  width: 100%;
+}
+.csstransforms .overthrow-enable .overthrow .overthrow-content {
+  -webkit-transform: translate(0, -50px);
+  -moz-transform: translate(0, -50px);
+  -ms-transform: translate(0, -50px);
+  -o-transform: translate(0, -50px);
+  transform: translate(0, -50px);
+}
+.overthrow-trans-in .overthrow {
+  opacity: 1;
+}
+.csstransforms .overthrow-trans-in .overthrow .overthrow-content {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.overthrow-trans-out .overthrow {
+  opacity: 1;
+}
+.csstransforms .overthrow-trans-out .overthrow .overthrow-content {
+  opacity: 0;
+  -webkit-transform: translate(0, 50px);
+  -moz-transform: translate(0, 50px);
+  -ms-transform: translate(0, 50px);
+  -o-transform: translate(0, 50px);
+  transform: translate(0, 50px);
+}
+.overthrow-hide .overthrow {
+  opacity: 0;
+}
+.overthrow .overthrow-shield {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAAA1BMVEX///+nxBvIAAAAAXRSTlPyE1VLVgAAABhJREFUeF7twDEBAAAAwiD7p7bFLlgKgAMFeAAB5q97lAAAAABJRU5ErkJggg=='); 0 0 repeat;
+}
+.ie6 .overthrow .overthrow-shield {
+  background: #ffffff;
+}
+.overthrow .overthrow-shim {
+  display: inline-block;
+  height: 100%;
+  width: 0px;
+  vertical-align: middle;
+  position: relative;
+}
+.overthrow .overthrow-wrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  z-index: 1;
+}
+.overthrow .overthrow-outer {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.ie6 .overthrow .overthrow-outer {
+  width: 600px;
+}
+.overthrow .overthrow-inner {
+  position: relative;
+  padding: 30px;
+}
+.overthrow .overthrow-content {
+  background: #fff;
+  padding: 30px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.overthrow .overthrow-close {
+  position: absolute;
+  top: 0;
+  right: 30px;
+}

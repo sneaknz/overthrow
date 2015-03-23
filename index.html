@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 lte9 lte8 lte7 lte6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8 lte9 lte8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9 lte9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Overthrow plugin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link href="example/screen.css" rel="stylesheet" />
+	
+	<script src="js/jquery-1.11.0.js"></script>
+	
+	<link href="css/overthrow.css" rel="stylesheet" />
+	<script src="js/jquery.overthrow.js"></script>
+	
+	<script>
+		$(function(){
+		
+			$('[rel=overthrow]').overthrow({
+				afterLoad: function() {
+					alert('hello!');
+				}
+			});
+			
+		});
+	</script>
+	
+</head>
+<body>
+	
+	<article>
+	
+		<h1>Overthrow</h1>
+		<section class="intro">
+			<p>A jQuery plugin to open a very simple modal using content from within the page or loaded via ajax.</p>
+			<p><a href="https://github.com/sneaknz/overthrow">View on Github</a> | <a href="https://github.com/sneaknz/overthrow/archive/master.zip">Download latest version</a></p>
+		</section>
+	
+		<section class="container">
+			<h2>Examples</h2>
+			<p>1. <a href="#content" rel="overthrow">Open some content specified in HTML</a></p>
+			<p>2. <a href="content.html" rel="overthrow">Open some content pulled in via ajax</a></p>
+			
+			<div id="content" style="display:none;">
+				<h1>Inline Content</h1>
+				<p>This is content within the existing HTML.</p>
+			</div>
+			
+			<h2>Usage</h2>
+			<p>
+				For any link that you want to open in an overthrow layer, set the <code>href</code> attribute to be the content you wish to load and then call <code>.overthrow()</code> for it. 
+				This plugin is only simple, and is set up to accept hrefs that are either a class/id which reference HTML elements within the current page (e.g. '#content' or '.content', for which the overthrow will load the contents of this element) 
+				or else an external fragment of HTML specified by a URL (e.g. htt://mysite.com/content.html).
+			</p>
+			<code><pre>&lt;a href="#content">Open my inline content&lt;/a>
+&lt;a href="http://mysite.com/content.html">Open my external content&lt;/a></pre></code>
+			<p>And the javascript to call the plugin:</p>
+			<code><pre>$('a').overthrow();</pre></code>
+			<p>You can optionally pass in some settings via options when calling overthrow(), or for the customClass option you can optionally use a data attribute on the link.</p>
+			<code><pre>$('a').overthrow({
+	customClass: 'myclass',
+	afterLoad: function(){
+		alert('hello!');
+	}
+});</pre></code>
+			<p><strong>Note:</strong> The show & hide transitions use CSS and corresponding javascript delays to match, so edit at your own peril. If you change or remove the CSS transitions, be sure to poke around and update the javascript also.
+			<h2>Options</h2>
+			<table>
+			 	<tr>
+					<th align="left" valign="top">customClass</th>
+					<td>A class that will be added to the overthrow wrapper. This can be specified in the settings object, or else as a data attribute on the link with the name <code>data-overthrow-class</code></td>
+				</tr>
+				<tr>
+					<th align="left" valign="top">afterLoad</th>
+					<td>A callback that gets called once the content is added to the overthrow.</td>
+				</tr>
+			</table>
+		</section>
+		
+	</article>
+		
+</body>
+</html>
