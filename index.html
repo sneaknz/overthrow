@@ -49,14 +49,14 @@
 			<h2>Usage</h2>
 			<p>
 				For any link that you want to open in an overthrow layer, set the <code>href</code> attribute to be the content you wish to load and then call <code>.overthrow()</code> for it. 
-				This plugin is only simple, and is set up to accept hrefs that are either a class/id which reference HTML elements within the current page (e.g. '#content' or '.content', for which the overthrow will load the contents of this element) 
-				or else an external fragment of HTML specified by a URL (e.g. htt://mysite.com/content.html).
+				This plugin is only simple, and is set up to accept hrefs that are either a class/id which reference HTML elements within the current page (e.g. '<code>#content</code>' or '<code>.content</code>', for which the overthrow will load the contents of this element) 
+				or else an external fragment of HTML specified by a URL (e.g. <code>http://mysite.com/content.html</code>).
 			</p>
 			<code><pre>&lt;a href="#content">Open my inline content&lt;/a>
 &lt;a href="http://mysite.com/content.html">Open my external content&lt;/a></pre></code>
 			<p>And the javascript to call the plugin:</p>
 			<code><pre>$('a').overthrow();</pre></code>
-			<p>You can optionally pass in some settings via options when calling overthrow(), or for the customClass option you can optionally use a data attribute on the link.</p>
+			<p>You can optionally pass in some settings via options when calling <code>overthrow()</code>, or for the <code>customClass</code> option you can optionally use a data attribute on the link.</p>
 			<code><pre>$('a').overthrow({
 	customClass: 'myclass',
 	afterLoad: function(){

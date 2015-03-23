@@ -47,6 +47,22 @@ html.lte8 {
   transition-timing-function: cubic-bezier(0.5, 0, 0.6, 1.3);
   /* custom */
 }
+.overthrow .overthrow-content {
+  -webkit-transition: all 200ms cubic-bezier(0.5, 0, 0.6, 1);
+  /* older webkit */
+  -webkit-transition: all 200ms cubic-bezier(0.5, 0, 0.6, 1.3);
+  -moz-transition: all 200ms cubic-bezier(0.5, 0, 0.6, 1.3);
+  -o-transition: all 200ms cubic-bezier(0.5, 0, 0.6, 1.3);
+  transition: all 200ms cubic-bezier(0.5, 0, 0.6, 1.3);
+  /* custom */
+  -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.6, 1);
+  /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.6, 1.3);
+  -moz-transition-timing-function: cubic-bezier(0.5, 0, 0.6, 1.3);
+  -o-transition-timing-function: cubic-bezier(0.5, 0, 0.6, 1.3);
+  transition-timing-function: cubic-bezier(0.5, 0, 0.6, 1.3);
+  /* custom */
+}
 .overthrow-enable .overthrow {
   position: fixed;
   display: block;
@@ -83,7 +99,6 @@ html.lte8 {
   opacity: 1;
 }
 .overthrow-trans-in .overthrow .overthrow-inner {
-  opacity: 1;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
@@ -93,8 +108,10 @@ html.lte8 {
 .overthrow-trans-out .overthrow {
   opacity: 1;
 }
-.overthrow-trans-out .overthrow .overthrow-inner {
+.overthrow-trans-out .overthrow .overthrow-content {
   opacity: 0;
+}
+.overthrow-trans-out .overthrow .overthrow-inner {
   -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);
   -ms-transform: scale(0.5);
@@ -131,6 +148,11 @@ html.lte8 {
   position: relative;
   padding: 30px;
 }
+@media (max-width: 700px) {
+  .overthrow .overthrow-inner {
+    padding: 30px 0;
+  }
+}
 .overthrow .overthrow-content {
   background: #ffffff;
   padding: 30px;
@@ -138,8 +160,21 @@ html.lte8 {
   border-radius: 4px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+@media (max-width: 700px) {
+  .overthrow .overthrow-content {
+    border-right: none;
+    border-left: none;
+    border-radius: 0px;
+    padding: 30px 4.28571429%;
+  }
+}
 .overthrow .overthrow-close {
   position: absolute;
   top: 0;
   right: 30px;
+}
+@media (max-width: 700px) {
+  .overthrow .overthrow-close {
+    right: 20px;
+  }
 }

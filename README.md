@@ -4,7 +4,7 @@ A jQuery plugin to open a very simple modal using content from within the page o
 
 ## Usage
 
-For any link that you want to open in an overthrow layer, set the <code>href</code> attribute to be the content you wish to load and then call <code>.overthrow()</code> for it. This plugin is only simple, and is set up to accept hrefs that are either a class/id which reference HTML elements within the current page (e.g. '#content' or '.content', for which the overthrow will load the contents of this element) or else an external fragment of HTML specified by a URL (e.g. htt://mysite.com/content.html).
+For any link that you want to open in an overthrow layer, set the <code>href</code> attribute to be the content you wish to load and then call <code>.overthrow()</code> for it. This plugin is only simple, and is set up to accept hrefs that are either a class/id which reference HTML elements within the current page (e.g. '<code>#content</code>' or '<code>.content</code>', for which the overthrow will load the contents of this element) or else an external fragment of HTML specified by a URL (e.g. <code>http://mysite.com/content.html</code>).
 
 	<a href="#content">Open my inline content</a>
 	<a href="http://mysite.com/content.html">Open my external content</a>
@@ -13,7 +13,7 @@ And the javascript to call the plugin:
 
 	$('a').overthrow();
 
-You can optionally pass in some settings via options when calling overthrow(), or for the customClass option you can optionally use a data attribute on the link.
+You can optionally pass in some settings via options when calling <code>overthrow()</code>, or for the <code>customClass</code> option you can optionally use a data attribute on the link.
 
 	$('a').overthrow({
 		customClass: 'myclass',
