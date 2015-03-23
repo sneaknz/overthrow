@@ -56,8 +56,6 @@
 			me.options.customClass = me.$el.data('overthrow-class');
 			me.options.target = me.$el.attr('href');
 			
-			console.log('me.hasTransitions', $.support);
-			
 			me._bindings();
 		},
 		
