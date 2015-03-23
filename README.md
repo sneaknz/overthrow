@@ -36,3 +36,7 @@ You can optionally pass in some settings via options when calling overthrow(), o
 		<td>A callback that gets called once the content is added to the overthrow.</td>
 	</tr>
 </table>
+
+## To-do
+
+- Add loading indicator while ajax content is retrieved

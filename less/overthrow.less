@@ -65,12 +65,10 @@ html {
 	overflow: hidden;
 	left: 0;
 	bottom: 0;
-	.transition(opacity 0.2s);
+	.transition(opacity 0.1s);
 	display: none;
 	
 	.overthrow-inner { .bounce-transition(200ms); }
-	
-	.overthrow-content { .bounce-transition(200ms); }
 	
 	.overthrow-enable & {
 		display: block;
@@ -104,15 +102,19 @@ html {
 	.overthrow-trans-in & {
 		opacity: 1;
 
-		.overthrow-inner { .transform(scale(1)); }
+		.overthrow-inner {
+			opacity: 1;
+			.transform(scale(1));
+		}
 	}
 	
 	.overthrow-trans-out & {
 		opacity: 1;
 		
-		.overthrow-content { opacity: 0; }
-
-		.overthrow-inner { .transform(scale(0.5)); }
+		.overthrow-inner {
+			opacity: 0;
+			.transform(scale(0.5));
+		}
 	}
 	
 	.overthrow-hide & { opacity: 0; }

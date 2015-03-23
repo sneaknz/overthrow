@@ -36,8 +36,15 @@ a.active {
 article {
 	display: block;
 	max-width: 600px;
-	margin: 30px auto 60px;
+	margin: 0 auto;
 	position: relative;
+	padding: 30px 30px 60px;
+}
+
+@media (max-width: 600px) {
+	article {
+		padding: 20px 20px 40px;
+	}
 }
 
 h1 {
@@ -67,114 +74,6 @@ p {
 
 .container {
 	overflow: hidden;
-}
-
-.justified,
-.justified .item {
-	margin: 0; padding: 0;
-}
-
-.justified {
-	text-align: justify;
-	font-size: 0.1px;
-	position: relative;
-}
-
-.justified > .item,
-.justified > .placeholder {
-	display: inline-block;
-	text-align: left;
-	position: relative;
-	vertical-align: top;
-	margin-bottom: 4%;
-	width: 22%;
-	padding-top: 10%;
-	background: #999;
-	
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-	        border-radius: 3px;
-}
-
-.justified > .floated {
-	float: right;
-	padding-top: 24%;
-	margin-left: 4%;
-	background: #f60;
-}
-
-.justified > .placeholder {
-	background: #ddd;
-	padding-top: 10%;
-}
-
-.cols-3 .update > .item,
-.cols-3 .update > .placeholder {
-	width: 32%;
-	padding-top: 10%;
-}
-.cols-3 .update > .floated {
-	padding-top: 24%;
-	margin-left: 2%;
-}
-
-.cols-5 .update > .item,
-.cols-5 .update > .placeholder {
-	width: 16%;
-	padding-top: 10%;
-}
-.cols-5 .justified > .floated {
-	width: 37%;
-	margin-left: 5%;
-}
-
-.justified::after {
-	content: "";
-	display: inline-block;
-	width: 100%;
-	height: 0;
-}
-
-.custom { padding-bottom: 20px; }
-
-.custom h4 {
-	display: block;
-	font-size: 14px;
-	background: #f60;
-	padding: 5px 10px;
-	margin: 0 0 5px;
-	position: absolute;
-	bottom: 0;
-	font-weight: normal;
-	color: #fff;
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-	        border-radius: 3px;
-}
-
-.placeholder {
-	position: relative;
-}
-
-.placeholder::before,
-.placeholder::after {
-	position: absolute;
-	content: "";
-	background: #999;
-	top: 50%;
-	left: 50%;
-}
-
-.placeholder::before {
-	width: 20px;
-	height: 2px;
-	margin: -1px 0 0 -10px;
-}
-
-.placeholder::after {
-	width: 2px;
-	height: 20px;
-	margin: -10px 0 0 -1px;
 }
 
 pre {
