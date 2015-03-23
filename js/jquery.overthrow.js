@@ -1,6 +1,6 @@
-/* 
+/*
 	Overthrow plugin
-	v0.0.1
+	v0.0.2
 	Mike Harding
 	
 	A jQuery plugin to open a very simple modal using content from within the page or loaded via ajax.
@@ -19,10 +19,19 @@
 		return -c * ((t=t/d-1)*t*t*t - 1) + b;
 	};
 	
+	$.support.transition = (function(){
+		var thisBody = document.body || document.documentElement,
+			thisStyle = thisBody.style,
+			support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+		return support;
+	})();
+	
 	var Overthrow = function(element, options) {
 		this.$el = $( element );
 		this.options = $.extend( true, {}, this.defaults, options );
 		this.container = '<div class="overthrow"><div class="overthrow-shield"></div><div class="overthrow-shim"></div><div class="overthrow-wrapper"><div class="overthrow-outer"><div class="overthrow-inner"><div class="overthrow-content"></div><a href="#" class="overthrow-close">Close</a></div></div></div></div>';
+		this.hasTransitions = $.support.transition;
+		this.transitionDuration = 200;
 		this._init();
 	};
 	
@@ -47,6 +56,8 @@
 			me.options.customClass = me.$el.data('overthrow-class');
 			me.options.target = me.$el.attr('href');
 			
+			console.log('me.hasTransitions', $.support);
+			
 			me._bindings();
 		},
 		
@@ -60,8 +71,12 @@
 					me.$container.addClass(me.options.customClass);
 				}
 
+				me.checkScrollbar();
+				me.setScrollbar();
+				me.$body.addClass('overthrow-open');
+
 				if ( me.options.target.substring(0,1) === '#' || me.options.target.substring(0,1) === '.' ) {
-					return me.loadInline()
+					return me.loadInline();
 				} else {
 					return me.loadAjax();
 				}
@@ -89,6 +104,7 @@
 				},
 				error: function(request, status, error) {
 					alert("Error: " + error);
+					me.hideOverthrow();
 				}
 			});
 		},
@@ -97,21 +113,24 @@
 			var me = this;
 
 			me.$body.append(me.$container);
-			
+			me.$body.addClass('overthrow-enable');
+
 			me.$close.on("click", function(ev) {
 				ev.preventDefault();
 				me.closeOverthrow();
 			});
 			
-			me.$body.addClass('overthrow-enable');
-
-			setTimeout(function() {
-				me.$body.addClass('overthrow-trans-in');
-			}, 10);
+			if ( me.hasTransitions ) {
+				setTimeout(function() {
+					me.$body.addClass('overthrow-trans-in');
+				}, 10);
+			} else {
+				me.$body.addClass('overthrow-show');
+			}
 
 			// Escape
 			me.$document.on('keyup', function ( e ) {
-				if (e.which == 27) {
+				if (e.which === 27) {
 					me.closeOverthrow();
 				}
 			});
@@ -122,6 +141,51 @@
 
 			me.$container.trigger("ajaxload");
 		},
+		
+		/* Scrollbar functions below taken & modified from twitter bootstrap */
+		checkScrollbar: function() {
+			var me = this;
+			
+			var fullWindowWidth = window.innerWidth;
+			
+			if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
+				var documentElementRect = document.documentElement.getBoundingClientRect();
+				fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left);
+			}
+			
+			me.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth;
+			me.scrollbarWidth = me.measureScrollbar();
+		},
+		
+		setScrollbar: function() {
+			var me = this;
+			
+			var bodyPad = parseInt((me.$body.css('padding-right') || 0), 10);
+			me.originalBodyPad = document.body.style.paddingRight || '';
+			
+			if (me.bodyIsOverflowing) {
+				me.$body.css('padding-right', bodyPad + me.scrollbarWidth);
+			}
+		},
+
+		resetScrollbar: function() {
+			var me = this;
+			
+			me.$body.css('padding-right', me.originalBodyPad);
+		},
+
+		measureScrollbar: function() { // thx walsh
+			var me = this;
+			
+			var scrollDiv = document.createElement('div');
+			scrollDiv.className = 'overflow-scrollbar-measure';
+			me.$body.append(scrollDiv);
+			
+			var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+			me.$body[0].removeChild(scrollDiv);
+			
+			return scrollbarWidth;
+	    },
 		
 		_touchEnabled: function() {
 			 return (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -136,18 +200,31 @@
 		closeOverthrow: function() {
 			var me = this;
 			
-			me.$body.removeClass('overthrow-trans-in').addClass('overthrow-trans-out');
-
-			setTimeout(function() {
-				me.$body.removeClass('overthrow-trans-out');
+			if ( me.hasTransitions ) {
+				me.$body.removeClass('overthrow-trans-in').addClass('overthrow-trans-out');
+				
+				setTimeout(function() {
+					me.$body.removeClass('overthrow-trans-out');
+					me.$content.html("");
+					me.$body.addClass('overthrow-hide');
+					setTimeout(function() {
+						me.$body.removeClass('overthrow-enable');
+						me.$body.removeClass('overthrow-hide');
+						me.$body.removeClass('overthrow-open');
+						me.resetScrollbar();
+						me.$container.remove();
+					}, me.transitionDuration);
+				}, me.transitionDuration);
+			} else {
+				me.$body.removeClass('overthrow-show');
 				me.$content.html("");
 				me.$body.addClass('overthrow-hide');
-				setTimeout(function() {
-					me.$body.removeClass('overthrow-enable');
-					me.$body.removeClass('overthrow-hide');
-					me.$container.remove();
-				}, 100);
-			}, 100);
+				me.$body.removeClass('overthrow-enable');
+				me.$body.removeClass('overthrow-hide');
+				me.$body.removeClass('overthrow-open');
+				me.resetScrollbar();
+				me.$container.remove();
+			}
 		}
 	};
 	
