@@ -69,9 +69,11 @@ html {
 	.transition(opacity 0.1s);
 	display: none;
 	
-	.overthrow-inner { .bounce-transition(); }
+	.overthrow-transitions & {
+		.overthrow-inner { .bounce-transition(); }
 	
-	.overthrow-content { .bounce-transition(); }
+		.overthrow-content { .bounce-transition(); }
+	}
 	
 	.overthrow-enable & {
 		display: block;
@@ -99,21 +101,31 @@ html {
 		
 		.ie6 & { background: @overthrow-bg-fallback; }
 		
-		.overthrow-inner { .transform(scale(0.5)); }
+		.overthrow-transitions & {
+			.overthrow-inner { .transform(scale(0.5)); }
+		}
 	}
 	
 	.overthrow-trans-in & {
 		opacity: 1;
-
-		.overthrow-inner { .transform(scale(1)); }
+		
+		.overthrow-transitions & {
+			.overthrow-inner { .transform(scale(1)); }
+		}
 	}
 	
 	.overthrow-trans-out & {
 		opacity: 1;
 		
 		.overthrow-content { opacity: 0; }
-
-		.overthrow-inner { .transform(scale(0.5)); }
+		
+		.overthrow-transitions & {
+			.overthrow-inner { .transform(scale(0.5)); }
+		}
+	}
+	
+	.overthrow-show & {
+		opacity: 1;
 	}
 	
 	.overthrow-hide & { opacity: 0; }
