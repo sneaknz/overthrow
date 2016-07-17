@@ -126,6 +126,10 @@
 				me.closeOverthrow();
 			});
 			
+			me.$container.on("click", ".overthrow-wrapper", function() {
+				me.closeOverthrow();
+			});
+			
 			if ( me.hasTransitions ) {
 				setTimeout(function() {
 					me.$body.addClass('overthrow-trans-in');
