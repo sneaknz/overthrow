@@ -110,7 +110,7 @@
 				},
 				error: function(request, status, error) {
 					alert("Error: " + error);
-					me.hideOverthrow();
+					me.closeOverthrow();
 				}
 			});
 		},
