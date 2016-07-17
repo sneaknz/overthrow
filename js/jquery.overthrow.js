@@ -38,7 +38,8 @@
 	Overthrow.prototype = {
 		defaults: {
 			customClass: null,
-			afterLoad: null
+			afterLoad: null,
+			disableForTouch: false
 		},
 		
 		_init: function() {
@@ -67,20 +68,24 @@
 			var me = this;
 			
 			me.$el.on('click.' + namespace, function(ev) {
-				ev.preventDefault();
-
-				if ( me.options.customClass ) {
-					me.$container.addClass(me.options.customClass);
-				}
-
-				me.checkScrollbar();
-				me.setScrollbar();
-				me.$body.addClass('overthrow-open');
-
-				if ( me.options.target.substring(0,1) === '#' || me.options.target.substring(0,1) === '.' ) {
-					return me.loadInline();
+				if ( me.options.disableForTouch && me.touch ) {
+					return;
 				} else {
-					return me.loadAjax();
+					ev.preventDefault();
+
+					if ( me.options.customClass ) {
+						me.$container.addClass(me.options.customClass);
+					}
+
+					me.checkScrollbar();
+					me.setScrollbar();
+					me.$body.addClass('overthrow-open');
+
+					if ( me.options.target.substring(0,1) === '#' || me.options.target.substring(0,1) === '.' ) {
+						return me.loadInline();
+					} else {
+						return me.loadAjax();
+					}
 				}
 			});
 		},
