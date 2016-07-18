@@ -134,8 +134,13 @@
 				setTimeout(function() {
 					me.$body.addClass('overthrow-trans-in');
 				}, 10);
+				
+				setTimeout(function() {
+					me.$close.addClass('overthrow-close-active');
+				}, me.options.duration);
 			} else {
 				me.$body.addClass('overthrow-show');
+				me.$close.addClass('overthrow-close-active');
 			}
 
 			// Escape
@@ -215,6 +220,7 @@
 				
 				setTimeout(function() {
 					me.$body.removeClass('overthrow-trans-out');
+					me.$close.removeClass('overthrow-close-active');
 					me.$content.html("");
 					me.$body.addClass('overthrow-hide');
 					setTimeout(function() {
@@ -226,6 +232,7 @@
 					}, me.transitionDuration);
 				}, me.transitionDuration);
 			} else {
+				me.$close.removeClass('overthrow-close-active');
 				me.$body.removeClass('overthrow-show');
 				me.$content.html("");
 				me.$body.addClass('overthrow-hide');
