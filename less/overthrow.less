@@ -24,16 +24,16 @@
 
 .bounce-transition(@t: 200ms) {
 	-webkit-transition: all @t cubic-bezier(0.500, 0, 0.600, 1); /* older webkit */
-	-webkit-transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3); 
-	   -moz-transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3); 
-	     -o-transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3); 
+	-webkit-transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3);
+	   -moz-transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3);
+	     -o-transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3);
 	        transition: all @t cubic-bezier(0.500, 0, 0.600, 1.3); /* custom */
 
 	-webkit-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1); /* older webkit */
-	-webkit-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3); 
-	   -moz-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3); 
-	     -o-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3); 
-	        transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3); /* custom */	
+	-webkit-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3);
+	   -moz-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3);
+	     -o-transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3);
+	        transition-timing-function: cubic-bezier(0.500, 0, 0.600, 1.3); /* custom */
 }
 
 body {
@@ -70,9 +70,14 @@ html {
 	display: none;
 	
 	.overthrow-transitions & {
-		.overthrow-inner { .bounce-transition(); }
-	
-		.overthrow-content { .bounce-transition(); }
+		.overthrow-inner,
+		.overthrow-content{
+			.bounce-transition();
+		}
+		
+		.overthrow-close {
+			.transition(0.2s opacity);
+		}
 	}
 	
 	.overthrow-enable & {
@@ -103,6 +108,7 @@ html {
 		
 		.overthrow-transitions & {
 			.overthrow-inner { .transform(scale(0.5)); }
+			.overthrow-close { opacity: 0; }
 		}
 	}
 	
@@ -111,16 +117,21 @@ html {
 		
 		.overthrow-transitions & {
 			.overthrow-inner { .transform(scale(1)); }
+			.overthrow-close { opacity: 1; }
 		}
 	}
 	
 	.overthrow-trans-out & {
 		opacity: 1;
 		
-		.overthrow-content { opacity: 0; }
+		.overthrow-content,
+		.overthrow-close {
+			opacity: 0;
+		}
 		
 		.overthrow-transitions & {
 			.overthrow-inner { .transform(scale(0.5)); }
+			.overthrow-close { opacity: 0; }
 		}
 	}
 	
