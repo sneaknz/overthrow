@@ -19,7 +19,9 @@ You can optionally pass in some settings via options when calling <code>overthro
 		customClass: 'myclass',
 		afterLoad: function(){
 			alert('hello!');
-		}
+		},
+		disableForTouch: true,
+		duration: 300
 	});
 
 **Note:** The show & hide transitions use CSS and corresponding javascript delays to match, so edit at your own peril. If you change or remove the CSS transitions, be sure to poke around and update the javascript also.
@@ -33,7 +35,15 @@ You can optionally pass in some settings via options when calling <code>overthro
 	</tr>
 	<tr>
 		<th align="left" valign="top">afterLoad</th>
-		<td>A callback that gets called once the content is added to the overthrow.</td>
+		<td>A callback that gets called once the content is added to the overthrow. This is useful if you need to run any javascript against the content before displaying it.</td>
+	</tr>
+	<tr>
+		<th align="left" valign="top">disableForTouch</th>
+		<td>Boolean, defaults to <code>false</code>. When set to <code>true</code>, Overthrow is disabled when on a touch device.</td>
+	</tr>
+	<tr>
+		<th align="left" valign="top">duration</th>
+		<td>The duration (ms) of the animation transition in/out. Defaults to <code>200</code>. Note that transitions only get applied if the browser supports CSS transitions, and the transitions are controlled by the addition/removal of CSS classes.</td>
 	</tr>
 </table>
 
