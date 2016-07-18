@@ -39,7 +39,8 @@
 		defaults: {
 			customClass: null,
 			afterLoad: null,
-			disableForTouch: false
+			disableForTouch: false,
+			duration: 200
 		},
 		
 		_init: function() {
@@ -226,29 +227,25 @@
 				me.$body.removeClass('overthrow-trans-in').addClass('overthrow-trans-out');
 				
 				setTimeout(function() {
-					me.$body.removeClass('overthrow-trans-out');
-					me.$close.removeClass('overthrow-close-active');
-					me.$content.html("");
-					me.$body.addClass('overthrow-hide');
-					setTimeout(function() {
-						me.$body.removeClass('overthrow-enable');
-						me.$body.removeClass('overthrow-hide');
-						me.$body.removeClass('overthrow-open');
-						me.resetScrollbar();
-						me.$container.remove();
-					}, me.transitionDuration);
-				}, me.transitionDuration);
+					me.setClosedState();
+				}, me.options.duration);
 			} else {
-				me.$close.removeClass('overthrow-close-active');
-				me.$body.removeClass('overthrow-show');
-				me.$content.html("");
-				me.$body.addClass('overthrow-hide');
-				me.$body.removeClass('overthrow-enable');
-				me.$body.removeClass('overthrow-hide');
-				me.$body.removeClass('overthrow-open');
-				me.resetScrollbar();
-				me.$container.remove();
+				me.setClosedState();
 			}
+		},
+		
+		setClosedState: function() {
+			var me = this;
+			
+			me.$body.removeClass('overthrow-trans-out');
+			me.$close.removeClass('overthrow-close-active');
+			me.$content.html("");
+			me.$body.addClass('overthrow-hide');
+			me.$body.removeClass('overthrow-enable');
+			me.$body.removeClass('overthrow-hide');
+			me.$body.removeClass('overthrow-open');
+			me.resetScrollbar();
+			me.$container.remove();
 		}
 	};
 	
