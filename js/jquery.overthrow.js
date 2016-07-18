@@ -54,7 +54,10 @@
 			me.$content = me.$container.find('.overthrow-content');
 			me.$close = me.$container.find('.overthrow-close');
 			
-			me.options.customClass = me.$el.data('overthrow-class');
+			if ( me.options.customClass == null ) {
+				me.options.customClass = me.$el.data('overthrow-class');
+			}
+			
 			me.options.target = me.$el.attr('href');
 			
 			if ( me.hasTransitions ) {
