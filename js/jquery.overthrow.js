@@ -121,13 +121,17 @@
 			me.$body.append(me.$container);
 			me.$body.addClass('overthrow-enable');
 
-			me.$close.on("click", function(ev) {
-				ev.preventDefault();
-				me.closeOverthrow();
-			});
-			
-			me.$container.on("click", ".overthrow-wrapper", function() {
-				me.closeOverthrow();
+			me.$container.on("click", function(ev) {
+				if ( $(ev.target).is( me.$close ) ) {
+					// Clicked close button, so close
+					ev.preventDefault();
+					me.closeOverthrow();
+				} else if ( $(ev.target).closest( me.$content ).length ) {
+					// Clicked in content area, so ignore
+				} else if ( $(ev.target).closest( me.$container ).length ) {
+					// Clicked outside of content, so close
+					me.closeOverthrow();
+				}
 			});
 			
 			if ( me.hasTransitions ) {
