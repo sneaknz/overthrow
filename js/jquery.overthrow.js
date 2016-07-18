@@ -1,6 +1,6 @@
 /*
 	Overthrow plugin
-	v0.0.3
+	v0.0.4
 	Mike Harding
 	
 	A jQuery plugin to open a very simple modal using content from within the page or loaded via ajax.
